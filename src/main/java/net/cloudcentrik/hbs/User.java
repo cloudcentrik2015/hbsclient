@@ -1,77 +1,68 @@
 package net.cloudcentrik.hbs;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class User {
 
-	private Integer id;
+	@XmlElement
+	private String userName;
 
-	private String name;
+	@XmlElement
+	private String userPassword;
 
-	private String email;
+	@XmlElement
+	private String userEmail;
 
-	private String phone;
+	@XmlElement
+	private String userType;
 
-	public Integer getId() {
-		return id;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
-		
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-	public String getName() {
-		return name;
+	public String getUserPassword() {
+		return userPassword;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-		
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getUserEmail() {
+		return userEmail;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-		
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getUserType() {
+		return userType;
 	}
 
-	public void setMobil(String phone) {
-		this.phone = phone;
-		
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+
+	public User(String userName, String userPassword, String userEmail,
+			String userType) {
+		super();
+		this.userName = userName;
+		this.userPassword = userPassword;
+		this.userEmail = userEmail;
+		this.userType = userType;
 	}
 
 	public User() {
-	}
-
-	public User(int id, String name, String email, String phone) {
-		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.phone = phone;
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (!(o instanceof User))
-			return false;
-		User that = (User) o;
-		if (!getId().equals(that.getId()))
-			return false;
-		if (!getName().equals(that.getName()))
-			return false;
-		if (!getEmail().equals(that.getEmail()))
-			return false;
-		if (!getPhone().equals(that.getPhone()))
-			return false;
-		return true;
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 }
+

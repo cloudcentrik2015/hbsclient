@@ -56,8 +56,9 @@ public class App {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// default title and icon
-				resultBox.setText("posting...");
-				resultBox.append(ServiceRequest.postRequest(txtUrl.getText()));
+				//resultBox.setText("posting...");
+				//resultBox.append(ServiceRequest.postRequest(txtUrl.getText()));
+				new PostFrame();
 			}
 		});
 

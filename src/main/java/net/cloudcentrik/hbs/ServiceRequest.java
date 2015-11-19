@@ -82,22 +82,21 @@ public class ServiceRequest {
 			Client client = Client.create(clientConfig);
 
 			WebResource webResource = client.resource(url);
-
 			// String input =
 			// "{\"id\":\"1012\",\"name\":\"Test Customer\",\"email\":\"test@gmail.com\",\"phone\":\"07053498\"}";
 
-			User user = new User("HabibT", "ith987", "habibT@test", "shop");
+			User user = new User("jamal", "ith987", "onetest@test", "shop");
 			ClientResponse response = webResource.type("application/json")
 					.post(ClientResponse.class, user);
 
-			if (response.getStatus() != 201) {
+			if (response.getStatus() != 200) {
 				throw new RuntimeException("Failed : HTTP error code : "
 						+ response.getStatus());
 			}
-
+			
 			System.out.println("Output from Server .... \n");
 			output = response.getEntity(String.class);
-			System.out.println(output);
+			//System.out.println(output);
 			return output;
 
 		} catch (Exception e) {

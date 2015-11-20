@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class PostFrame {
+public class RegisterView {
 
 	private JFrame frame;
 	private JTextField txtUserName;
@@ -27,7 +27,7 @@ public class PostFrame {
 	private JTextField txtEmail;
 	private JTextField txtUserType;
 
-	public PostFrame() {
+	public RegisterView() {
 
 		displayPostForm();
 	}
@@ -44,6 +44,7 @@ public class PostFrame {
 		this.createPostForm(frame.getContentPane());
 
 		// Display the window.
+		frame.setLocationRelativeTo(null);
 		frame.pack();
 		frame.setVisible(true);
 

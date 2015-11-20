@@ -1,9 +1,10 @@
 package net.cloudcentrik.hbs;
 
-import net.cloudcentrik.hbs.ServiceRequest;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
+import net.cloudcentrik.hbs.LoginView;
 
 public class App {
 	static JFrame frame;
@@ -19,10 +20,13 @@ public class App {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				displayJFrame();
+				//displayJFrame();
+				new LoginView();
 			}
 		});
 	}
+	
+	/*
 
 	static void displayJFrame() {
 
@@ -80,5 +84,6 @@ public class App {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
+	*/
 
 }

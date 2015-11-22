@@ -10,7 +10,6 @@ import javax.swing.JTextField;
 import java.awt.event.*;
 
 import net.cloudcentrik.hbs.AdminView;
-import net.cloudcentrik.hbs.RegisterView;
 
 public class LoginView {
 

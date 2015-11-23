@@ -82,10 +82,17 @@ public class LoginView {
 		public void actionPerformed(ActionEvent e) {
 			if ("login".equals(e.getActionCommand())) {
 
-				JOptionPane.showMessageDialog(frame,
-						"Action yet to implemented: login");
+				char[] p = passwordText.getPassword();
+				if(LoginRequest.login(userText.getText(),new String(p))){
+					new AdminView();
+				}else{
+					JOptionPane.showMessageDialog(frame,
+							"Login incorrect!!!");
+					userText.setText("");
+					 passwordText.setText("");
+				}
 				
-				new AdminView();
+				
 
 			} else if ("register".equals(e.getActionCommand())) {
 				

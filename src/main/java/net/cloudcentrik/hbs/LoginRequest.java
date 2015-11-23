@@ -1,5 +1,7 @@
 package net.cloudcentrik.hbs;
 
+import java.util.Arrays;
+
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
@@ -8,12 +10,32 @@ import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.api.json.JSONConfiguration;
 
 public class LoginRequest {
-	
-	public static boolean login(String userName,String password){
-		
-		return false;
+
+	public static boolean login(String userName, String password) {
+
+		if (userName.equals("admin") && password.equals("admin")) {
+			return true;
+		}else{
+			return false;
+		}
 	}
-	
+
+	private static boolean isPasswordCorrect(char[] input) {
+		boolean isCorrect = true;
+		char[] correctPassword = { 'a', 'd', 'm', 'i', 'n'};
+
+		if (input.length != correctPassword.length) {
+			isCorrect = false;
+		} else {
+			isCorrect = Arrays.equals(input, correctPassword);
+		}
+
+		// Zero out the password.
+		Arrays.fill(correctPassword, '0');
+
+		return isCorrect;
+	}
+
 	public static String postRequest(String url) {
 		String output = "ERROR";
 		try {
@@ -35,10 +57,9 @@ public class LoginRequest {
 				throw new RuntimeException("Failed : HTTP error code : "
 						+ response.getStatus());
 			}
-			
+
 			System.out.println("Output from Server .... \n");
 			output = response.getEntity(String.class);
-			//System.out.println(output);
 			return output;
 
 		} catch (Exception e) {

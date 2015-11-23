@@ -142,6 +142,6 @@ public class RegisterView {
 	public void postData(String userName, String password, String email,
 			String type) {
 		// post data
-		JOptionPane.showMessageDialog(frame, "User Saved");
+		JOptionPane.showMessageDialog(frame, "Action not yet implemented");
 	}
 }

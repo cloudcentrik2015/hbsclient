@@ -22,7 +22,7 @@ public class AdminView {
 
 	public void createAndShowGUI() {
 		JFrame frame = new JFrame("HBS Admin");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		frame.setSize(800, 400);
 		

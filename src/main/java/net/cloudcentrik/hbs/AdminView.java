@@ -10,24 +10,31 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.Border;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class AdminView {
+	
+	JFrame frame;
+	ArrayList<User> users;
 
 	public AdminView() {
 		createAndShowGUI();
 	}
 
 	public void createAndShowGUI() {
-		JFrame frame = new JFrame("HBS Admin");
+		frame = new JFrame("HBS Admin");
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		frame.setSize(800, 400);
 		
 		//get all user JSON request
-		ArrayList<User> users=GetAllUser.getAllUser("http://localhost:9000/User/all");
+		users=GetAllUser.getAllUser("http://localhost:9000/User/all");
 
 		Object rowData[][]=createTableData(users);
 		
@@ -37,6 +44,26 @@ public class AdminView {
 		table.setRowHeight(30);
 		table.setBackground(Color.CYAN);
 		table.setForeground(Color.blue);
+		
+		 table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		 
+		 ListSelectionModel rowSM = table.getSelectionModel();
+         rowSM.addListSelectionListener(new ListSelectionListener() {
+             public void valueChanged(ListSelectionEvent e) {
+                 //Ignore extra messages.
+                 if (e.getValueIsAdjusting()) return;
+
+                 ListSelectionModel lsm = (ListSelectionModel)e.getSource();
+                 if (lsm.isSelectionEmpty()) {
+                	 JOptionPane.showMessageDialog(frame, "No Row Selected!!!");
+                 } else {
+                     int selectedRow = lsm.getMinSelectionIndex();
+                     
+                     JOptionPane.showMessageDialog(frame, "User Name : "+users.get(selectedRow).getUserName());
+                 }
+             }
+         });
+		 
 		
 		 Border paneEdge = BorderFactory.createEmptyBorder(20,20,20,20);
 

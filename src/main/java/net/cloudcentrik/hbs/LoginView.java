@@ -27,13 +27,13 @@ public class LoginView {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
-		
+
 		frame.add(panel);
-		
+
 		placeComponents(panel);
 
 		frame.setLocationRelativeTo(null);
-		
+
 		frame.setResizable(false);
 
 		frame.setVisible(true);
@@ -42,7 +42,7 @@ public class LoginView {
 	private void placeComponents(JPanel panel) {
 
 		panel.setLayout(null);
-		
+
 		JLabel hbsLabel = new JLabel("HBS Dextop CLIENT");
 		hbsLabel.setBounds(100, 120, 150, 25);
 		panel.add(hbsLabel);
@@ -80,25 +80,41 @@ public class LoginView {
 
 	public class loginButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+
+			
+
 			if ("login".equals(e.getActionCommand())) {
 
-				char[] p = passwordText.getPassword();
-				if(LoginRequest.login(userText.getText(),new String(p))){
+				
+				
+				User u = new User();
+				u.setUserName(userText.getText());
+				u.setUserPassword(new String(passwordText.getPassword()));
+				u.setUserEmail("");
+				u.setUserType("");
+
+				String url = "http://localhost:9000/User/signin";
+				
+				if (LoginRequest.isValidUser(url, u)) {
 					new AdminView();
-				}else{
-					JOptionPane.showMessageDialog(frame,
-							"Login incorrect!!!");
-					userText.setText("");
-					 passwordText.setText("");
 				}
-				
-				
+				/*char[] p = passwordText.getPassword();
+				if (LoginRequest.login(userText.getText(), new String(p))) {
+					new AdminView();
+				}*/ 
+				else {
+					JOptionPane.showMessageDialog(frame, "Login incorrect!!!");
+					userText.setText("");
+					passwordText.setText("");
+				}
 
 			} else if ("register".equals(e.getActionCommand())) {
-				
-				/*JOptionPane.showMessageDialog(frame,
-						"Action yet to implemented: register");*/
-				
+
+				/*
+				 * JOptionPane.showMessageDialog(frame,
+				 * "Action yet to implemented: register");
+				 */
+
 				new RegisterView();
 
 			}

@@ -30,14 +30,6 @@ public class AdminView {
 		ArrayList<User> users=GetAllUser.getAllUser("http://localhost:9000/User/all");
 
 		Object rowData[][]=createTableData(users);
-		/*
-		Object rowData[][] = {
-				{ "ismail", "open123", "ismail@cloudcentrik.net", "admin" },
-				{ "kadir", "Row2-Column2", "Row2-Column3", "shop" },
-				{ "jishan", "Row2-Column2", "Row2-Column3", "shop" },
-				{ "karim", "Row2-Column2", "Row2-Column3", "shop" },
-				{ "jaman", "Row2-Column2", "Row2-Column3", "shop" }};
-				*/
 		
 		Object columnNames[] = { "User Name", "Password", "Email", "User Type" };
 		

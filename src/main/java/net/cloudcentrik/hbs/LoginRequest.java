@@ -36,8 +36,8 @@ public class LoginRequest {
 		return isCorrect;
 	}
 
-	public static String postRequest(String url) {
-		String output = "ERROR";
+	public static boolean isValidUser(String url,User user) {
+		boolean output = false;
 		try {
 
 			ClientConfig clientConfig = new DefaultClientConfig();
@@ -46,10 +46,7 @@ public class LoginRequest {
 			Client client = Client.create(clientConfig);
 
 			WebResource webResource = client.resource(url);
-			// String input =
-			// "{\"id\":\"1012\",\"name\":\"Test Customer\",\"email\":\"test@gmail.com\",\"phone\":\"07053498\"}";
-
-			User user = new User("jamal", "ith987", "onetest@test", "shop");
+			
 			ClientResponse response = webResource.type("application/json")
 					.post(ClientResponse.class, user);
 
@@ -58,8 +55,15 @@ public class LoginRequest {
 						+ response.getStatus());
 			}
 
-			System.out.println("Output from Server .... \n");
-			output = response.getEntity(String.class);
+			User u = response.getEntity(User.class);
+			
+			//System.out.println(u.getUserName());
+			
+			if(u.getUserName().equals("")&&u.getUserPassword().equals("")){
+				output=false;
+			}else{
+				output=true;
+			}
 			return output;
 
 		} catch (Exception e) {

@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -26,8 +27,9 @@ public class AdminView {
 	public AdminView() {
 		createAndShowGUI();
 	}
-
+	
 	public void createAndShowGUI() {
+		HBSClientUtils.setLookAndFeel();
 		frame = new JFrame("HBS Admin");
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 

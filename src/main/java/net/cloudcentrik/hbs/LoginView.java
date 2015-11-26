@@ -7,6 +7,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+
 import java.awt.event.*;
 
 import net.cloudcentrik.hbs.AdminView;
@@ -20,8 +22,9 @@ public class LoginView {
 	public LoginView() {
 		createGUI();
 	}
-
+	
 	public void createGUI() {
+		HBSClientUtils.setLookAndFeel();
 		frame = new JFrame("HBS Admin Login");
 		frame.setSize(300, 180);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

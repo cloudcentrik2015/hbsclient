@@ -13,11 +13,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
 
 public class RegisterView {
 
@@ -31,18 +34,19 @@ public class RegisterView {
 
 		displayPostForm();
 	}
-
+	
 	private void displayPostForm() {
-		frame = new JFrame("Post Data");
+		HBSClientUtils.setLookAndFeel();
+
+		frame = new JFrame("Signup");
 		frame.setLayout(new GridLayout());
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-		frame.setPreferredSize(new Dimension(400, 250));
+		frame.setPreferredSize(new Dimension(600, 400));
 		frame.setResizable(false);
-		frame.setLocation(300, 200);
+		frame.setLocationRelativeTo(null);
 
 		this.createPostForm(frame.getContentPane());
-
 		// Display the window.
 		frame.setLocationRelativeTo(null);
 		frame.pack();
@@ -62,6 +66,20 @@ public class RegisterView {
 		JLabel userName = new JLabel("User Name");
 		JLabel password = new JLabel("Password");
 		JLabel email = new JLabel("Email");
+
+		String[] userType = { "admin", "customer", "shop" };
+		JComboBox cmbUser = new JComboBox(userType);
+		cmbUser.setSelectedIndex(1);
+		cmbUser.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				JComboBox cb = (JComboBox) e.getSource();
+				String uType = (String) cb.getSelectedItem();
+				txtUserType.setText(uType);
+
+			}
+		});
+
 		JLabel type = new JLabel("User Type");
 
 		txtUserName = new JTextField(20);
@@ -69,7 +87,7 @@ public class RegisterView {
 		txtEmail = new JTextField(20);
 		txtUserType = new JTextField(20);
 
-		JButton btnSave = new JButton("Save User");
+		JButton btnSave = new JButton("Save");
 		JButton btnClose = new JButton("Close");
 
 		// add components to the panel
@@ -95,7 +113,9 @@ public class RegisterView {
 		constraints.gridy = 3;
 		panel.add(type, constraints);
 		constraints.gridx = 1;
-		panel.add(txtUserType, constraints);
+		panel.add(cmbUser, constraints);
+		// constraints.gridx = 2;
+		// panel.add(txtUserType, constraints);
 
 		constraints.gridx = 0;
 		constraints.gridy = 4;
@@ -131,9 +151,14 @@ public class RegisterView {
 			}
 		});
 
-		panel.setBorder(BorderFactory.createTitledBorder(
-				BorderFactory.createEtchedBorder(), "JSON POST Request"));
-		panel.setBackground(Color.GRAY);
+		Border emptyBorder = BorderFactory.createEmptyBorder(20, 20, 20, 20);
+		Border txtBorder = BorderFactory.createTitledBorder(
+				BorderFactory.createEtchedBorder(), "New User");
+		Border compoundBoarder = BorderFactory.createCompoundBorder(
+				emptyBorder, txtBorder);
+
+		panel.setBorder(compoundBoarder);
+		// panel.setBackground(Color.WHITE);
 
 		contentPane.add(panel, BorderLayout.CENTER);
 

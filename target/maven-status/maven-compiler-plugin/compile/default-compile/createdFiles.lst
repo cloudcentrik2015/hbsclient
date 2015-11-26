@@ -7,6 +7,7 @@ net/cloudcentrik/hbs/App$1.class
 net/cloudcentrik/hbs/App.class
 net/cloudcentrik/hbs/RegisterView$2.class
 net/cloudcentrik/hbs/LoginRequest.class
+net/cloudcentrik/hbs/SaveUserRequest.class
 net/cloudcentrik/hbs/User.class
 net/cloudcentrik/hbs/HBSClientUtils.class
 net/cloudcentrik/hbs/RegisterView$1.class

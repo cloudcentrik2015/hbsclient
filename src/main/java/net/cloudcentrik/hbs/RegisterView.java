@@ -29,6 +29,7 @@ public class RegisterView {
 	private JTextField txtPassword;
 	private JTextField txtEmail;
 	private JTextField txtUserType;
+	private JComboBox cmbUser;
 
 	public RegisterView() {
 
@@ -68,7 +69,7 @@ public class RegisterView {
 		JLabel email = new JLabel("Email");
 
 		String[] userType = { "admin", "customer", "shop" };
-		JComboBox cmbUser = new JComboBox(userType);
+		cmbUser = new JComboBox(userType);
 		cmbUser.setSelectedIndex(1);
 		cmbUser.addActionListener(new ActionListener() {
 
@@ -167,6 +168,24 @@ public class RegisterView {
 	public void postData(String userName, String password, String email,
 			String type) {
 		// post data
-		JOptionPane.showMessageDialog(frame, "Action not yet implemented");
+		String userType=cmbUser.getSelectedItem().toString();
+		User user=new User(txtUserName.getText(),txtPassword.getText(),txtEmail.getText(),userType);
+		
+		User u=SaveUserRequest.saveUser("http://localhost:9000/User", user);
+		
+		if(u!=null){
+			
+			txtUserName.setText("");
+			txtPassword.setText("");
+			txtEmail.setText("");
+			cmbUser.setSelectedIndex(1);
+			
+			JOptionPane.showMessageDialog(frame, "User saved");
+			
+		}else{
+			JOptionPane.showMessageDialog(frame, "User not saved, something wrong!!!");
+		}
+		
+		
 	}
 }

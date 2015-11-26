@@ -9,6 +9,11 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.*;
 
 import net.cloudcentrik.hbs.AdminView;
@@ -26,12 +31,19 @@ public class LoginView {
 	public void createGUI() {
 		HBSClientUtils.setLookAndFeel();
 		frame = new JFrame("HBS Admin Login");
-		frame.setSize(300, 180);
+		frame.setSize(500,300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frame.setLayout(new GridLayout(2,1,10,20));
+		
+		Container contentPane = frame.getContentPane();
+		contentPane.setLayout(new FlowLayout());
 
 		JPanel panel = new JPanel();
+		panel.setPreferredSize(new Dimension(400,250));
 
-		frame.add(panel);
+		contentPane.add(new JLabel("Hair Dresser Booking System"));
+		
+		contentPane.add(panel);
 
 		placeComponents(panel);
 
@@ -44,41 +56,37 @@ public class LoginView {
 
 	private void placeComponents(JPanel panel) {
 
-		panel.setLayout(null);
-
-		JLabel hbsLabel = new JLabel("HBS Dextop CLIENT");
-		hbsLabel.setBounds(100, 120, 150, 25);
-		panel.add(hbsLabel);
+		panel.setBorder(HBSClientUtils.createBorder("login",30));
+		panel.setLayout(new GridLayout(3,2,10,20));
+		//panel.setBackground(Color.LIGHT_GRAY);
 
 		JLabel userLabel = new JLabel("User");
-		userLabel.setBounds(10, 10, 80, 25);
+		userLabel.setHorizontalAlignment(JLabel.RIGHT);
 		panel.add(userLabel);
 
 		userText = new JTextField(20);
-		userText.setBounds(100, 10, 160, 25);
 		panel.add(userText);
 
 		JLabel passwordLabel = new JLabel("Password");
-		passwordLabel.setBounds(10, 40, 80, 25);
+		passwordLabel.setHorizontalAlignment(JLabel.RIGHT);
 		panel.add(passwordLabel);
 
 		passwordText = new JPasswordField(20);
-		passwordText.setBounds(100, 40, 160, 25);
 		panel.add(passwordText);
+		
+		JButton registerButton = new JButton("register");
+		panel.add(registerButton);
 
-		JButton loginButton = new JButton("login");
-		loginButton.setBounds(50, 80, 100, 25);
+		registerButton.setActionCommand("register");
+		registerButton.addActionListener(new loginButtonListener());
+
+		JButton loginButton = new JButton("Login");
 		panel.add(loginButton);
 
 		loginButton.setActionCommand("login");
 		loginButton.addActionListener(new loginButtonListener());
 
-		JButton registerButton = new JButton("register");
-		registerButton.setBounds(160, 80, 100, 25);
-		panel.add(registerButton);
-
-		registerButton.setActionCommand("register");
-		registerButton.addActionListener(new loginButtonListener());
+		
 	}
 
 	public class loginButtonListener implements ActionListener {

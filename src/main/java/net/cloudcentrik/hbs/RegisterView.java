@@ -152,13 +152,7 @@ public class RegisterView {
 			}
 		});
 
-		Border emptyBorder = BorderFactory.createEmptyBorder(20, 20, 20, 20);
-		Border txtBorder = BorderFactory.createTitledBorder(
-				BorderFactory.createEtchedBorder(), "New User");
-		Border compoundBoarder = BorderFactory.createCompoundBorder(
-				emptyBorder, txtBorder);
-
-		panel.setBorder(compoundBoarder);
+		panel.setBorder(HBSClientUtils.createBorder("signup",20));
 		// panel.setBackground(Color.WHITE);
 
 		contentPane.add(panel, BorderLayout.CENTER);

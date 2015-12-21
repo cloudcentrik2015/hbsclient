@@ -7,5 +7,6 @@
 /home/ismail/my_project/maven/hbs_client/src/main/java/net/cloudcentrik/hbs/User.java
 /home/ismail/my_project/maven/hbs_client/src/main/java/net/cloudcentrik/hbs/SaveUserRequest.java
 /home/ismail/my_project/maven/hbs_client/src/main/java/net/cloudcentrik/hbs/GetAllUser.java
+/home/ismail/my_project/maven/hbs_client/src/main/java/net/cloudcentrik/hbs/DeleteUserRequest.java
 /home/ismail/my_project/maven/hbs_client/src/main/java/net/cloudcentrik/hbs/AdminView.java
 /home/ismail/my_project/maven/hbs_client/src/main/java/net/cloudcentrik/hbs/HBSClientUtils.java

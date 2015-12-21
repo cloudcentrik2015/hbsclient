@@ -33,6 +33,8 @@ public class AdminView {
 
 	JFrame frame;
 	ArrayList<User> users;
+	private Object rowData[][];
+	private DefaultTableModel defTableModel;
 
 	private JTextField txtUserName;
 	private JTextField txtUserPasward;
@@ -41,6 +43,7 @@ public class AdminView {
 	private JButton btnUpdate;
 	private JButton btndelte;
 	private JComboBox cmbUserType;
+	private JTable table;
 
 	public AdminView() {
 		createAndShowGUI();
@@ -57,12 +60,14 @@ public class AdminView {
 		// get all user JSON request
 		users = GetAllUser.getAllUser("http://localhost:9000/User/all");
 
-		Object rowData[][] = createTableData(users);
+		rowData= createTableData(users);
 
 		Object columnNames[] = { "User Name", "Password", "Email", "User Type",
 				"Select" };
+		
+		defTableModel = new DefaultTableModel(rowData,columnNames);
 
-		JTable table = new JTable(rowData, columnNames);
+		table = new JTable(defTableModel);
 		table.setRowHeight(30);
 		table.setBackground(Color.CYAN);
 		table.setForeground(Color.blue);
@@ -173,6 +178,7 @@ public class AdminView {
 				if(DeleteUserRequest.deleteUser("http://localhost:9000/User/"+txtUserEmail.getText(), user)){
 					JOptionPane.showMessageDialog(frame,
 							"User Deleted!!!");
+					updateTable();
 				}else{
 					JOptionPane.showMessageDialog(frame,
 							"Error Deleting User!!!");
@@ -232,15 +238,17 @@ public class AdminView {
 		return resultData;
 	}
 	
-	private void updateTable(JTable jTable){
-		DefaultTableModel tableModel = (DefaultTableModel) jTable.getModel();
-	    tableModel.setRowCount(0);
+	private void updateTable(){
+		defTableModel.setRowCount(0);
+		users = GetAllUser.getAllUser("http://localhost:9000/User/all");
+	    rowData= createTableData(users);
 	    
-	    users = GetAllUser.getAllUser("http://localhost:9000/User/all");
-	    Object rowData[][] = createTableData(users);
+	    for (int i = 0; i < rowData.length; i++) {
+
+	    	defTableModel.addRow(rowData[i]);
+	    }
 	    
-	    jTable.setModel(tableModel);
-	    tableModel.fireTableDataChanged();
+	    defTableModel.fireTableDataChanged();
 	}
 
 }

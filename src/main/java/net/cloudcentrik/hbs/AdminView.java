@@ -162,8 +162,12 @@ public class AdminView {
 			public void actionPerformed(ActionEvent e) {
 				// Execute when button is pressed
 				// frame.dispose();
-				JOptionPane.showMessageDialog(frame,
-						"Action not yet implemented!!!");
+				
+				String userType=cmbUserType.getSelectedItem().toString();
+				User user=new User(txtUserName.getText(),txtUserPasward .getText(),txtUserEmail.getText(),userType);
+				
+				updateUserData(user);
+				updateTable();
 			}
 		});
 
@@ -249,6 +253,26 @@ public class AdminView {
 	    }
 	    
 	    defTableModel.fireTableDataChanged();
+	}
+	
+	public void updateUserData(User user) {
+		
+		User u=UpdateUserRequest.updateUser("http://localhost:9000/User/"+user.getUserEmail(), user);
+		
+		if(u!=null){
+			
+			txtUserName.setText("");
+			txtUserPasward.setText("");
+			txtUserEmail.setText("");
+			cmbUserType.setSelectedIndex(1);
+			
+			JOptionPane.showMessageDialog(frame, "User Updated");
+			
+		}else{
+			JOptionPane.showMessageDialog(frame, "User not saved, something wrong!!!");
+		}
+		
+		
 	}
 
 }

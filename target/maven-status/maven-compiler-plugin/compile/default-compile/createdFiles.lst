@@ -13,6 +13,7 @@ net/cloudcentrik/hbs/HBSClientUtils.class
 net/cloudcentrik/hbs/RegisterView$1.class
 net/cloudcentrik/hbs/AdminView$2.class
 net/cloudcentrik/hbs/LoginView$loginButtonListener.class
+net/cloudcentrik/hbs/UpdateUserRequest.class
 net/cloudcentrik/hbs/AdminView$4.class
 net/cloudcentrik/hbs/RegisterView$2.class
 net/cloudcentrik/hbs/LoginRequest.class
